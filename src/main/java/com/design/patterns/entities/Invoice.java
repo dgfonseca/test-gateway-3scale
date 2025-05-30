@@ -98,7 +98,7 @@ public class Invoice {
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Period {
+public static class Period {
 
     @XmlElement(name = "from")
     private String fromDate;
@@ -116,7 +116,7 @@ public class Period {
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Party {
+public static class Party {
 
     private int id;
 
@@ -157,7 +157,7 @@ public class Party {
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class LineItems {
+public static class LineItems {
 
     @XmlElement(name = "line-item")
     private List<LineItem> items;
@@ -168,7 +168,7 @@ public class LineItems {
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class LineItem {
+public static class LineItem {
 
     private int id;
     private String name;
