@@ -18,7 +18,7 @@ import jakarta.ws.rs.core.MediaType;
 public interface BillingApiClient {
 
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Path("/invoice/{id}/state.xml")
+    @Path("/invoices/{id}/state.xml")
     @PUT
     public Invoice getInvoiceById(@PathParam("id") int id, @FormParam("access_token") String accessToken, @FormParam("state")String status);
     
