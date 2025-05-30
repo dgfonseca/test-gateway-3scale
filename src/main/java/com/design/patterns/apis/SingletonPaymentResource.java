@@ -4,6 +4,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import com.design.patterns.client.BillingApiClient;
+import com.design.patterns.entities.CustomResponse;
 import com.design.patterns.entities.Invoice;
 import com.design.patterns.entities.Payment;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -31,11 +32,17 @@ public class SingletonPaymentResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response pay(Payment payment){
         Invoice invoice = client.getInvoiceById(payment.invoiceId, accessToken, "paid");
-        return Response.ok(invoice).build();
+        CustomResponse res = new CustomResponse();
+        res.cost=invoice.getCost();
+        res.currency=invoice.getCurrency();
+        res.paidAt=invoice.getPaidAt();
+        res.state=invoice.getState();
+        res.invoiceId=invoice.getFriendlyId();
+        return Response.ok(res).build();
     }
 
     
